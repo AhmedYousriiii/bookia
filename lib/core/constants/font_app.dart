@@ -1,3 +1,3 @@
 class FontApp {
-  static String  dmserifdisplay = "DM Serif Display";
+  static String dmserifdisplay = "DM Serif Display";
 }

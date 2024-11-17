@@ -33,7 +33,8 @@ TextStyle get16text({double? fontsize, Color? color, FontWeight? fontweight}) {
   );
 }
 
-TextStyle getprimarytext({double? fontsize, Color? color, FontWeight? fontweight}) {
+TextStyle getprimarytext(
+    {double? fontsize, Color? color, FontWeight? fontweight}) {
   return TextStyle(
     color: color ?? ColorApp.primarycolor,
     fontSize: fontsize ?? 15,
@@ -41,7 +42,8 @@ TextStyle getprimarytext({double? fontsize, Color? color, FontWeight? fontweight
   );
 }
 
-TextStyle getbuttontext({double? fontsize, Color? color, FontWeight? fontweight}) {
+TextStyle getbuttontext(
+    {double? fontsize, Color? color, FontWeight? fontweight}) {
   return TextStyle(
     color: color ?? ColorApp.backgroundcolor,
     fontSize: fontsize ?? 15,

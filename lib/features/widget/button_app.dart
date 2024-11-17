@@ -2,7 +2,13 @@ import 'package:boookia/core/utils/color_app.dart';
 import 'package:flutter/material.dart';
 
 class ButtonApp extends StatelessWidget {
-  const ButtonApp({super.key, required this.text, this.color, this.colortext, this.colorborder, required this.onpress});
+  const ButtonApp(
+      {super.key,
+      required this.text,
+      this.color,
+      this.colortext,
+      this.colorborder,
+      required this.onpress});
   final String text;
   final Color? color;
   final Color? colortext;

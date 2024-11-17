@@ -16,3 +16,13 @@ pushto(BuildContext context, Widget newpage) {
         builder: (context) => newpage,
       ));
 }
+
+pushAndRemoveUntil(BuildContext context, Widget newpage) {
+  return Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (context) => newpage,
+    ),
+    (route) => false,
+  );
+}

@@ -12,7 +12,7 @@
 //     return Padding(
 //       padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
 //       child: TextFormField(
-       
+
 //         decoration: InputDecoration(
 //           hintText: "",
 //           hintStyle: gethinttext(),

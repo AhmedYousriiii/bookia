@@ -1,8 +1,8 @@
 import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
 import 'package:boookia/core/utils/color_app.dart';
-import 'package:boookia/features/auth/login/login.dart';
-import 'package:boookia/features/auth/register/register.dart';
+import 'package:boookia/features/auth/presentation/page/login.dart';
+import 'package:boookia/features/auth/presentation/page/register.dart';
 
 import 'package:boookia/features/widget/button_app.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
-import 'package:boookia/features/auth/login/login.dart';
+import 'package:boookia/features/auth/presentation/page/login.dart';
 import 'package:boookia/features/widget/button_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
