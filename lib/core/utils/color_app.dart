@@ -7,4 +7,5 @@ class ColorApp {
   static Color graycolor = Color(0xff8391A1);
   static Color backgroundcolor = Color(0xffFFFFFF);
   static Color primarycolor = Color(0xffBFA054);
+  static Color secondarycolor = Color(0xffF5EFE1);
 }

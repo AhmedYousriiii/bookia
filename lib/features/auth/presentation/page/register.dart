@@ -6,9 +6,10 @@ import 'package:boookia/features/auth/data/model/request/request..dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_event.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_state.dart';
+import 'package:boookia/features/home/presentation/page/nav_bar.dart';
 
 import 'package:boookia/features/intro/welcome/welcome.dart';
-import 'package:boookia/features/page/home_screen.dart';
+
 import 'package:boookia/features/widget/button_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -185,7 +186,8 @@ class _LoginScreenState extends State<RegisterScreen> {
                                           email: emailcontro.text,
                                           name: namecontro.text,
                                           password: passwordcontroller.text,
-                                          passwordConfirmation: confirmpasswordcontroller.text,
+                                          passwordConfirmation:
+                                              confirmpasswordcontroller.text,
                                         ),
                                       ),
                                     );
@@ -229,7 +231,7 @@ class _LoginScreenState extends State<RegisterScreen> {
         },
         listener: (context, state) {
           if (state is RegisterSuccessState) {
-            pushAndRemoveUntil(context, HomeScreen());
+            pushAndRemoveUntil(context, NavBarScreen());
           } else if (state is AuthErrorState) {
             showErrorDialog(context, state.meassage);
           }

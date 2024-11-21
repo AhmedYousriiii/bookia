@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:boookia/core/constants/endpoint.dart';
+import 'package:boookia/core/services/dio_provider.dart';
 import 'package:boookia/features/auth/data/model/request/request..dart';
 import 'package:boookia/features/auth/data/model/response/user_model_respone/user_model_respone.dart';
 import 'package:dio/dio.dart';
@@ -9,17 +10,10 @@ import 'package:dio/dio.dart';
 class AuthRepo {
   static Future<UserModelRespone?> register(UserModel prams) async {
     try {
-      // print(prams.toJson());
-      var response = await Dio().post(
-        Endpoint.baseUrl + Endpoint.register,
-        data: prams.toJson()
-        //  json.encode(prams.toJson())
-        ,
-        // options: Options(
-        //   headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        // ),
+      var response = await DioProvider.post(
+        endpoint: Endpoint.register,
+        data: prams.toJson(),
       );
-      log(response.data.toString());
 
       if (response.statusCode == 201) {
         return UserModelRespone.fromJson(response.data);
@@ -34,8 +28,8 @@ class AuthRepo {
 
   static Future<UserModelRespone?> login(UserModel prams) async {
     try {
-      var response = await Dio().post(
-        Endpoint.baseUrl + Endpoint.login,
+      var response = await DioProvider.post(
+        endpoint: Endpoint.login,
         data: prams.toJson(),
       );
       if (response.statusCode == 200) {
@@ -50,7 +44,10 @@ class AuthRepo {
 
   static Future<bool> forgetpassword(UserModel prams) async {
     try {
-      var response = await Dio().post(Endpoint.baseUrl + Endpoint.forgetpassword, data: prams.toJson());
+      var response = await DioProvider.post(
+        endpoint: Endpoint.forgetpassword,
+        data: prams.toJson(),
+      );
       if (response.statusCode == 200) {
         print(json.encode(response.data));
         return true;
@@ -65,8 +62,8 @@ class AuthRepo {
 
   static Future<bool> Codeforgetpass(UserModel prams) async {
     try {
-      var response = await Dio().post(
-        Endpoint.baseUrl + Endpoint.checkforgetpassword,
+      var response = await DioProvider.post(
+        endpoint: Endpoint.checkforgetpassword,
         data: prams.toJson(),
       );
       if (response.statusCode == 200) {

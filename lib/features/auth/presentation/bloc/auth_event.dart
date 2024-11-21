@@ -19,5 +19,6 @@ class ForgetPaawordEvent extends AuthEvent {
 
 class CodeForgetPaawordEvent extends AuthEvent {
   final UserModel prams;
+
   CodeForgetPaawordEvent(this.prams);
 }

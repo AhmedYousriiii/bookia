@@ -1,18 +1,19 @@
 import 'package:boookia/core/utils/color_App.dart';
+import 'package:boookia/features/home/presentation/page/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class NavBarScreen extends StatefulWidget {
+  const NavBarScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<NavBarScreen> createState() => _NavBarScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _NavBarScreenState extends State<NavBarScreen> {
   int currentpage = 0;
   List<Widget> page = [
-    Center(child: Text("home")),
+    Homescreen(),
     Center(child: Text("Bookmark")),
     Center(child: Text("Category")),
     Center(child: Text("Profile")),

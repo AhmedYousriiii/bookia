@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
+import 'package:boookia/core/services/shared_preferences.dart';
+import 'package:boookia/features/home/presentation/page/nav_bar.dart';
 import 'package:boookia/features/intro/welcome/welcome.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,8 +20,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    String? token = SharedPrefere.getData(SharedPrefere.token);
     Future.delayed(Duration(seconds: 5), () {
-      pushReplacement(context, WelcomeScreen());
+      log(token.toString());
+      if (token == null) {
+        pushReplacement(context, WelcomeScreen());
+      }
+      pushReplacement(context, NavBarScreen());
     });
   }
 

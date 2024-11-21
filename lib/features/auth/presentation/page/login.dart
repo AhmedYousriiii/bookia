@@ -8,8 +8,8 @@ import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_event.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_state.dart';
 import 'package:boookia/features/auth/presentation/page/register.dart';
+import 'package:boookia/features/home/presentation/page/nav_bar.dart';
 import 'package:boookia/features/intro/welcome/welcome.dart';
-import 'package:boookia/features/page/home_screen.dart';
 
 import 'package:boookia/features/widget/app_barcustom.dart';
 import 'package:boookia/features/widget/button_app.dart';
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
-            pushAndRemoveUntil(context, HomeScreen());
+            pushAndRemoveUntil(context, NavBarScreen());
           } else if (state is AuthErrorState) {
             showErrorDialog(context, state.meassage);
           }
@@ -61,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 10),
                     child: TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -83,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 5,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 10),
                     child: TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -126,7 +128,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (formkey.currentState!.validate()) {
                               context.read<AuthBloc>().add(
                                     LoginEvent(
-                                      UserModel(email: emailcontroller.text, password: passwordcontroller.text),
+                                      UserModel(
+                                          email: emailcontroller.text,
+                                          password: passwordcontroller.text),
                                     ),
                                   );
                             }
@@ -160,7 +164,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 8,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 20, top: 22),
+                    padding:
+                        const EdgeInsets.only(left: 22, right: 20, top: 22),
                     child: Row(
                       children: [
                         Expanded(

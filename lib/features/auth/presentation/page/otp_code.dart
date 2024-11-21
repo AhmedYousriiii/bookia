@@ -73,7 +73,8 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: ColorApp.primarycolor, width: 2),
+                            border: Border.all(
+                                color: ColorApp.primarycolor, width: 2),
                           ),
                         ),
                         validator: (value) {
