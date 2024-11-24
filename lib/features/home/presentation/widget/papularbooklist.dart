@@ -1,9 +1,11 @@
+import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
 import 'package:boookia/core/utils/color_app.dart';
 import 'package:boookia/features/home/data/model/response/product_new_arrivals/product.dart';
 import 'package:boookia/features/home/presentation/bloc/home_bloc.dart';
 import 'package:boookia/features/home/presentation/bloc/home_event.dart';
 import 'package:boookia/features/home/presentation/bloc/home_state.dart';
+import 'package:boookia/features/home/presentation/page/book_details.dart';
 
 import 'package:boookia/features/widget/button_app.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,9 @@ class _PapularbooklistState extends State<Papularbooklist> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (previous, current) => current is NewArrivalsbookLoadedState || current is NewArrivalsbookLoadingState,
+      buildWhen: (previous, current) =>
+          current is NewArrivalsbookLoadedState ||
+          current is NewArrivalsbookLoadingState,
       builder: (context, state) {
         if (state is NewArrivalsbookLoadedState) {
           var booklist = context.read<HomeBloc>().product;
@@ -56,7 +60,12 @@ class _PapularbooklistState extends State<Papularbooklist> {
                         mainAxisExtent: 280,
                       ),
                       itemBuilder: (context, index) {
-                        return bookItem(book: booklist[index]);
+                        return GestureDetector(
+                            onTap: () {
+                              pushto(context,
+                                  BookDetails(product: booklist[index]));
+                            },
+                            child: bookItem(book: booklist[index]));
                       },
                       itemCount: 6,
                     )
@@ -94,12 +103,15 @@ class bookItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  book.image ?? "",
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+              child: Hero(
+                tag: book.id.toString(),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    book.image ?? "",
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

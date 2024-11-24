@@ -8,7 +8,8 @@ class SliderModelResponse {
 
   SliderModelResponse({this.data, this.message, this.error, this.status});
 
-  factory SliderModelResponse.fromJson(Map<String, dynamic> json) => SliderModelResponse(
+  factory SliderModelResponse.fromJson(Map<String, dynamic> json) =>
+      SliderModelResponse(
         data: json['data'] == null
             ? null
             : Data.fromJson(json['data'] as Map<String, dynamic>),

@@ -39,7 +39,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               if (state is ForgetPaawordSuccessState) {
                 pushReplacement(context, OtpScreen());
               } else if (state is AuthErrorState) {
-                showErrorDialog(context, state.meassage);
+                showMessageDialog(context, state.meassage);
               }
             },
             builder: (context, state) {
@@ -88,8 +88,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               if (formkey.currentState!.validate()) {
                                 context.read<AuthBloc>().add(
                                       ForgetPaawordEvent(
-                                        UserModel(
-                                            email: passwordcontroller.text),
+                                        UserModel(email: passwordcontroller.text),
                                       ),
                                     );
                               }

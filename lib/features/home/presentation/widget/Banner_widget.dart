@@ -26,7 +26,8 @@ class _BannerWidgetState extends State<BannerWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (previous, current) => current is SlidersLoadedState || current is SlidersLoadingState,
+      buildWhen: (previous, current) =>
+          current is SlidersLoadedState || current is SlidersLoadingState,
       builder: (context, state) {
         if (state is SlidersLoadedState) {
           var sliders = context.read<HomeBloc>().slider;
@@ -34,7 +35,8 @@ class _BannerWidgetState extends State<BannerWidget> {
             children: [
               CarouselSlider.builder(
                   itemCount: sliders.length,
-                  itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                  itemBuilder:
+                      (BuildContext context, int itemIndex, int pageViewIndex) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
@@ -57,7 +59,8 @@ class _BannerWidgetState extends State<BannerWidget> {
                     reverse: false,
                     autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.2,

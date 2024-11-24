@@ -6,4 +6,7 @@ class Endpoint {
   static String checkforgetpassword = "/check-forget-password";
   static String productsnewarrivals = "/products-new-arrivals";
   static String sliders = "/sliders";
+  static String wishlist = "/wishlist";
+  static String addtowishlist = "/add-to-wishlist";
+  static String removefromwishlist = "/remove-from-wishlist";
 }

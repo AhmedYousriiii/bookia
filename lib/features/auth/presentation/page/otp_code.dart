@@ -36,7 +36,7 @@ class _OtpScreenState extends State<OtpScreen> {
             if (state is CodepasswordSuccessState) {
               pushReplacement(context, CreateNewPassword());
             } else if (state is AuthErrorState) {
-              showErrorDialog(context, state.meassage);
+              showMessageDialog(context, state.meassage);
             }
           },
           builder: (context, state) {
@@ -73,8 +73,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                                color: ColorApp.primarycolor, width: 2),
+                            border: Border.all(color: ColorApp.primarycolor, width: 2),
                           ),
                         ),
                         validator: (value) {

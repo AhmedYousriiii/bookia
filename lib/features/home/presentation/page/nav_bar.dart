@@ -1,5 +1,6 @@
 import 'package:boookia/core/utils/color_App.dart';
 import 'package:boookia/features/home/presentation/page/home_screen.dart';
+import 'package:boookia/features/wishlist/presentation/page/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,7 +15,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   int currentpage = 0;
   List<Widget> page = [
     Homescreen(),
-    Center(child: Text("Bookmark")),
+    WishlistScreen(),
     Center(child: Text("Category")),
     Center(child: Text("Profile")),
   ];
@@ -37,19 +38,35 @@ class _NavBarScreenState extends State<NavBarScreen> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/icons/Home.svg",
+                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+              ),
               backgroundColor: ColorApp.backgroundcolor,
               icon: SvgPicture.asset("assets/icons/Home.svg"),
               label: "Home",
             ),
             BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/icons/Bookmark.svg",
+                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+              ),
               icon: SvgPicture.asset("assets/icons/Bookmark.svg"),
               label: "Bookmark",
             ),
             BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/icons/Category.svg",
+                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+              ),
               icon: SvgPicture.asset("assets/icons/Category.svg"),
               label: "Category",
             ),
             BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/icons/Profile.svg",
+                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+              ),
               icon: SvgPicture.asset("assets/icons/Profile.svg"),
               label: "Profile",
             ),
