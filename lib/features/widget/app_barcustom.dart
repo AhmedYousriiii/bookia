@@ -7,7 +7,7 @@ AppBar getAppBar(BuildContext context, Widget newpage) {
   return AppBar(
     leading: GestureDetector(
       onTap: () {
-        pushto(context, newpage);
+        pushReplacement(context, newpage);
       },
       child: Padding(
         padding: const EdgeInsets.only(
@@ -15,8 +15,8 @@ AppBar getAppBar(BuildContext context, Widget newpage) {
         ),
         child: SvgPicture.asset(
           "assets/icons/back.svg",
-          height: 41,
-          width: 41,
+          height: 32,
+          width: 32,
         ),
       ),
     ),

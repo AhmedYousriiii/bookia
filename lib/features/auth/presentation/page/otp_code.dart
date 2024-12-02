@@ -2,7 +2,7 @@ import 'package:boookia/core/function/dilogs.dart';
 import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
 import 'package:boookia/core/utils/color_app.dart';
-import 'package:boookia/features/auth/createnewpassword/create_new_pass.dart';
+import 'package:boookia/features/auth/presentation/page/create_new_pass.dart';
 import 'package:boookia/features/auth/data/model/request/request..dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_event.dart';
@@ -73,7 +73,8 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: ColorApp.primarycolor, width: 2),
+                            border: Border.all(
+                                color: ColorApp.primarycolor, width: 2),
                           ),
                         ),
                         validator: (value) {

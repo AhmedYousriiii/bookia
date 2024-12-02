@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:boookia/features/auth/data/model/request/request..dart';
+import 'package:boookia/features/cart/data/model/request/place_order_prams.dart';
 
 class AuthEvent {}
 

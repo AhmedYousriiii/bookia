@@ -5,7 +5,6 @@ import 'package:boookia/core/constants/endpoint.dart';
 import 'package:boookia/core/services/dio_provider.dart';
 import 'package:boookia/features/auth/data/model/request/request..dart';
 import 'package:boookia/features/auth/data/model/response/user_model_respone/user_model_respone.dart';
-import 'package:dio/dio.dart';
 
 class AuthRepo {
   static Future<UserModelRespone?> register(UserModel prams) async {

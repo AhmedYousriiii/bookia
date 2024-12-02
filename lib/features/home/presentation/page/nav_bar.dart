@@ -1,11 +1,14 @@
 import 'package:boookia/core/utils/color_App.dart';
+import 'package:boookia/features/cart/presentation/page/cart.dart';
 import 'package:boookia/features/home/presentation/page/home_screen.dart';
+import 'package:boookia/features/profile/presentation/page/profile_page.dart';
 import 'package:boookia/features/wishlist/presentation/page/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NavBarScreen extends StatefulWidget {
-  const NavBarScreen({super.key});
+  const NavBarScreen({super.key, this.currentindex});
+  final int? currentindex;
 
   @override
   State<NavBarScreen> createState() => _NavBarScreenState();
@@ -16,9 +19,14 @@ class _NavBarScreenState extends State<NavBarScreen> {
   List<Widget> page = [
     Homescreen(),
     WishlistScreen(),
-    Center(child: Text("Category")),
-    Center(child: Text("Profile")),
+    CartScreen(),
+    ProfileScreen(),
   ];
+  @override
+  void initState() {
+    super.initState();
+    currentpage = widget.currentindex ?? 0;
+  }
 
   @override
   Widget build(BuildContext context) {

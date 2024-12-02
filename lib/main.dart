@@ -3,9 +3,8 @@ import 'package:boookia/core/services/dio_provider.dart';
 import 'package:boookia/core/services/shared_preferences.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/home/presentation/bloc/home_bloc.dart';
-
-import 'package:boookia/features/home/presentation/page/nav_bar.dart';
-
+import 'package:boookia/features/intro/splash/splash.dart';
+import 'package:boookia/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,11 +28,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeBloc(),
         ),
+        BlocProvider(
+          create: (context) => ProfileBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: TextfromThem.themeData,
-        home: NavBarScreen(),
+        home: SplashScreen(),
       ),
     );
   }

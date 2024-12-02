@@ -35,12 +35,16 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         currentPage: json['current_page'] as int?,
-        data: (json['data'] as List<dynamic>?)?.map((e) => Product.fromJson(e as Map<String, dynamic>)).toList(),
+        data: (json['data'] as List<dynamic>?)
+            ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+            .toList(),
         firstPageUrl: json['first_page_url'] as String?,
         from: json['from'] as int?,
         lastPage: json['last_page'] as int?,
         lastPageUrl: json['last_page_url'] as String?,
-        links: (json['links'] as List<dynamic>?)?.map((e) => Link.fromJson(e as Map<String, dynamic>)).toList(),
+        links: (json['links'] as List<dynamic>?)
+            ?.map((e) => Link.fromJson(e as Map<String, dynamic>))
+            .toList(),
         nextPageUrl: json['next_page_url'] as dynamic,
         path: json['path'] as String?,
         perPage: json['per_page'] as int?,

@@ -1,6 +1,7 @@
 import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
-import 'package:boookia/features/auth/presentation/page/login.dart';
+
+import 'package:boookia/features/home/presentation/page/nav_bar.dart';
 import 'package:boookia/features/widget/button_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,11 +38,18 @@ class PasswordChanged extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          ButtonApp(
-              text: "Back to Login",
-              onpress: () {
-                pushReplacement(context, LoginScreen());
-              }),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: ButtonApp(
+                text: "Back to Home",
+                onpress: () {
+                  pushReplacement(
+                      context,
+                      NavBarScreen(
+                        currentindex: 0,
+                      ));
+                }),
+          ),
         ],
       ),
     );

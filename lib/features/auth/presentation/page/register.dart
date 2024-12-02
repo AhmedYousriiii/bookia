@@ -6,6 +6,7 @@ import 'package:boookia/features/auth/data/model/request/request..dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_event.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_state.dart';
+import 'package:boookia/features/auth/presentation/page/login.dart';
 import 'package:boookia/features/home/presentation/page/nav_bar.dart';
 
 import 'package:boookia/features/intro/welcome/welcome.dart';
@@ -27,6 +28,7 @@ var emailcontro = TextEditingController();
 var passwordcontroller = TextEditingController();
 var confirmpasswordcontroller = TextEditingController();
 var formkey = GlobalKey<FormState>();
+bool _obscureText = true;
 
 class _LoginScreenState extends State<RegisterScreen> {
   @override
@@ -35,7 +37,7 @@ class _LoginScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         leading: GestureDetector(
           onTap: () {
-            pushto(context, WelcomeScreen());
+            pushReplacement(context, WelcomeScreen());
           },
           child: Padding(
             padding: const EdgeInsets.only(
@@ -65,7 +67,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       padding: const EdgeInsets.only(right: 73),
                       child: Text(
                         "Hello! Register to get started",
-                        style: get30text(),
+                        style: get30text(fontsize: 26),
                       ),
                     ),
                     SizedBox(
@@ -83,7 +85,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         hintText: "Username",
                         hintStyle: get15text(),
-                        fillColor: Color(0xffE8ECF4).withOpacity(.4),
+                        fillColor: Color(0xffE8ECF4).withOpacity(.2),
                         filled: true,
                       ),
                     ),
@@ -103,7 +105,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         hintText: "Email",
                         hintStyle: get15text(),
-                        fillColor: Color(0xffE8ECF4).withOpacity(.4),
+                        fillColor: Color(0xffE8ECF4).withOpacity(.2),
                         filled: true,
                       ),
                     ),
@@ -111,7 +113,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       height: 12,
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: _obscureText,
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -128,13 +130,18 @@ class _LoginScreenState extends State<RegisterScreen> {
                         ),
                         suffixIcon: Transform.translate(
                           offset: Offset(-10, 0),
-                          child: SvgPicture.asset(
-                            'assets/icons/eye-.svg',
+                          child: GestureDetector(
+                            onTap: () {
+                              _obscureText = !_obscureText;
+                            },
+                            child: SvgPicture.asset(
+                              'assets/icons/eye-.svg',
+                            ),
                           ),
                         ),
                         hintText: "Password",
                         hintStyle: get15text(),
-                        fillColor: Color(0xffE8ECF4).withOpacity(.4),
+                        fillColor: Color(0xffE8ECF4).withOpacity(.2),
                         filled: true,
                       ),
                     ),
@@ -142,7 +149,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       height: 12,
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: _obscureText,
                       keyboardType: TextInputType.visiblePassword,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -161,13 +168,18 @@ class _LoginScreenState extends State<RegisterScreen> {
                         ),
                         suffixIcon: Transform.translate(
                           offset: Offset(-10, 0),
-                          child: SvgPicture.asset(
-                            'assets/icons/eye-.svg',
+                          child: GestureDetector(
+                            onTap: () {
+                              _obscureText = !_obscureText;
+                            },
+                            child: SvgPicture.asset(
+                              'assets/icons/eye-.svg',
+                            ),
                           ),
                         ),
                         hintText: "Confirm password",
                         hintStyle: get15text(),
-                        fillColor: Color(0xffE8ECF4).withOpacity(.4),
+                        fillColor: Color(0xffE8ECF4).withOpacity(.2),
                         filled: true,
                       ),
                     ),
@@ -213,7 +225,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            pushto(context, RegisterScreen());
+                            pushReplacement(context, LoginScreen());
                           },
                           child: Text(
                             " Login Now",
@@ -232,7 +244,7 @@ class _LoginScreenState extends State<RegisterScreen> {
           if (state is RegisterSuccessState) {
             pushAndRemoveUntil(context, NavBarScreen());
           } else if (state is AuthErrorState) {
-            showMessageDialog(context, state.meassage);
+            showMessageDialog(context, state.meassage,DialogType.error);
           }
         },
       ),

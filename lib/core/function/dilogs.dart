@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 enum DialogType { suceess, error }
 
-showMessageDialog(BuildContext context, String message, DialogType type) {
+showMessageDialog(BuildContext context, String message,
+    [DialogType type = DialogType.suceess]) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      backgroundColor: type == DialogType.suceess ? ColorApp.primarycolor : Colors.red,
+      backgroundColor:
+          type == DialogType.suceess ? ColorApp.primarycolor : Colors.red,
       content: Text(
         message,
         style: get16text(color: ColorApp.backgroundcolor),
@@ -16,11 +18,12 @@ showMessageDialog(BuildContext context, String message, DialogType type) {
 showLoadingDialog(BuildContext context) {
   showDialog(
       context: context,
-      barrierDismissible: false,
+      // barrierDismissible: false,
       builder: (context) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset("assets/icons/Bookmark.svg")],
+        return Column(
+          children: [
+            Center(child: CircularProgressIndicator()),
+          ],
         );
       });
 }

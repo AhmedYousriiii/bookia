@@ -88,7 +88,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               if (formkey.currentState!.validate()) {
                                 context.read<AuthBloc>().add(
                                       ForgetPaawordEvent(
-                                        UserModel(email: passwordcontroller.text),
+                                        UserModel(
+                                            email: passwordcontroller.text),
                                       ),
                                     );
                               }

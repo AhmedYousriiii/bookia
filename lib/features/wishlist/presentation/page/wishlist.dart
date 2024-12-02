@@ -1,3 +1,4 @@
+import 'package:boookia/core/function/dilogs.dart';
 import 'package:boookia/core/function/text_style_app.dart';
 import 'package:boookia/core/utils/color_app.dart';
 import 'package:boookia/features/home/presentation/bloc/home_bloc.dart';
@@ -34,12 +35,17 @@ class _WishlistScreenState extends State<WishlistScreen> {
         ),
         body: BlocConsumer<HomeBloc, HomeState>(
           listener: (context, state) {
-            if (state is WishListLoadingState || state is RemoveFormWishListtLoadingState) {
-              Center(child: CircularProgressIndicator());
+            if (state is WishListLoadingState ||
+                state is RemoveFormWishListtLoadingState ||
+                state is AddtoCartLoadingState) {
+              showLoadingDialog(context);
             } else if (state is WishListLoadedState) {
-              // Navigator.pop(context);
+              Navigator.pop(context);
             } else if (state is RemoveFormWishListLoadedState) {
               context.read<HomeBloc>().add(WishListEvent());
+            } else if (state is AddtoCartLoadedState) {
+              Navigator.pop(context);
+              showMessageDialog(context, "added to Cart");
             }
           },
           builder: (context, state) {
@@ -93,14 +99,18 @@ class _WishlistScreenState extends State<WishlistScreen> {
                                         wishlist[index].name ?? "",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                        style: get16text(color: Color(0xff606060)),
+                                        style:
+                                            get16text(color: Color(0xff606060)),
                                       )),
                                       SizedBox(
                                         width: 5,
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                          context.read<HomeBloc>().add(RemoveFormWishListEvent(productId: wishlist[index].id ?? 0));
+                                          context.read<HomeBloc>().add(
+                                              RemoveFormWishListEvent(
+                                                  productId:
+                                                      wishlist[index].id ?? 0));
                                         },
                                         icon: SvgPicture.asset(
                                           'assets/icons/Shape.svg',
@@ -123,7 +133,12 @@ class _WishlistScreenState extends State<WishlistScreen> {
                                       ButtonApp(
                                         height: 45,
                                         width: 180,
-                                        onpress: () {},
+                                        onpress: () {
+                                          context.read<HomeBloc>().add(
+                                              AddtoCartEvent(
+                                                  productId:
+                                                      wishlist[index].id ?? 0));
+                                        },
                                         text: "Add To Cart",
                                       ),
                                     ],

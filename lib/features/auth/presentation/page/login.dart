@@ -7,6 +7,7 @@ import 'package:boookia/features/auth/data/model/request/request..dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_event.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_state.dart';
+import 'package:boookia/features/auth/presentation/page/forgot_password.dart';
 import 'package:boookia/features/auth/presentation/page/register.dart';
 import 'package:boookia/features/home/presentation/page/nav_bar.dart';
 import 'package:boookia/features/intro/welcome/welcome.dart';
@@ -27,6 +28,7 @@ class LoginScreen extends StatefulWidget {
 var emailcontroller = TextEditingController();
 var passwordcontroller = TextEditingController();
 var formkey = GlobalKey<FormState>();
+bool _obscureText = true;
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -54,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.only(left: 22, right: 73),
                     child: Text(
                       "Welcome back! Glad to see you, Again!",
-                      style: get30text(),
+                      style: get30text(fontsize: 26),
                     ),
                   ),
                   SizedBox(
@@ -74,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         hintText: "Enter your email",
                         hintStyle: get15text(),
-                        fillColor: Color(0xffE8ECF4).withOpacity(.4),
+                        fillColor: Color(0xffE8ECF4).withOpacity(.2),
                         filled: true,
                       ),
                     ),
@@ -85,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                     child: TextFormField(
+                      obscureText: _obscureText,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "password is required";
@@ -94,9 +97,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       controller: passwordcontroller,
                       decoration: InputDecoration(
+                        suffixIconConstraints: BoxConstraints(
+                          maxHeight: 35,
+                          maxWidth: 35,
+                        ),
+                        suffixIcon: Transform.translate(
+                          offset: Offset(-10, 0),
+                          child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: SvgPicture.asset(
+                                'assets/icons/eye-.svg',
+                              )),
+                        ),
                         hintText: "Enter your password",
                         hintStyle: get15text(),
-                        fillColor: Color(0xffE8ECF4).withOpacity(.4),
+                        fillColor: Color(0xffE8ECF4).withOpacity(.2),
                         filled: true,
                       ),
                     ),
@@ -107,7 +126,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(right: 12),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              pushto(context, ForgotPasswordScreen());
+                            },
                             child: Text(
                               "Forgot Password?",
                               style: get15text(),
@@ -120,17 +141,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   state is LoginLoadingState
                       ? CircularProgressIndicator()
-                      : ButtonApp(
-                          text: "Login",
-                          onpress: () {
-                            if (formkey.currentState!.validate()) {
-                              context.read<AuthBloc>().add(
-                                    LoginEvent(
-                                      UserModel(email: emailcontroller.text, password: passwordcontroller.text),
-                                    ),
-                                  );
-                            }
-                          }),
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: ButtonApp(
+                              text: "Login",
+                              onpress: () {
+                                if (formkey.currentState!.validate()) {
+                                  context.read<AuthBloc>().add(
+                                        LoginEvent(
+                                          UserModel(email: emailcontroller.text, password: passwordcontroller.text),
+                                        ),
+                                      );
+                                }
+                              }),
+                        ),
                   SizedBox(
                     height: 34,
                   ),
@@ -238,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          pushto(context, RegisterScreen());
+                          pushReplacement(context, RegisterScreen());
                         },
                         child: Text(
                           "Register Now",

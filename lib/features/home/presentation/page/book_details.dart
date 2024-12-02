@@ -24,11 +24,14 @@ class _BookDetailsState extends State<BookDetails> {
   Widget build(BuildContext context) {
     return BlocListener<HomeBloc, HomeState>(
       listener: (context, state) {
-        if (state is AddtoLoadingState) {
+        if (state is AddtoWishlistLoadingState ||
+            state is AddtoCartLoadingState) {
           Center(child: CircularProgressIndicator());
-        } else if (state is AddtoListLoadedState) {
+        } else if (state is AddtoWishListLoadedState) {
           // Navigator.pop(context);
           showMessageDialog(context, "Added To wishlist", DialogType.suceess);
+        } else if (state is AddtoCartLoadedState) {
+          showMessageDialog(context, "Added To cart", DialogType.suceess);
         }
       },
       child: Scaffold(
@@ -45,7 +48,11 @@ class _BookDetailsState extends State<BookDetails> {
               ),
               Expanded(
                 child: ButtonApp(
-                  onpress: () {},
+                  onpress: () {
+                    context
+                        .read<HomeBloc>()
+                        .add(AddtoCartEvent(productId: widget.product.id ?? 0));
+                  },
                   text: "Add To Cart",
                   color: ColorApp.darkcolor,
                 ),
@@ -57,7 +64,9 @@ class _BookDetailsState extends State<BookDetails> {
           actions: [
             GestureDetector(
               onTap: () {
-                context.read<HomeBloc>().add(AddToWishListEvent(productId: widget.product.id ?? 0));
+                context
+                    .read<HomeBloc>()
+                    .add(AddToWishListEvent(productId: widget.product.id ?? 0));
               },
               child: SvgPicture.asset("assets/icons/Bookmark.svg"),
             ),
