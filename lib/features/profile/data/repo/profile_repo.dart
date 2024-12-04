@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:boookia/core/constants/endpoint.dart';
 import 'package:boookia/core/services/dio_provider.dart';
 import 'package:boookia/core/services/shared_preferences.dart';
+import 'package:boookia/features/profile/data/model/request/update_password.dart';
 import 'package:boookia/features/profile/data/model/request/update_profile_prams.dart';
 import 'package:boookia/features/profile/data/model/response/profile_response/profile_response.dart';
 
@@ -50,10 +51,37 @@ class ProfileRepo {
 
   static Future<bool> updateprofile({required UpdateProfilePrams prmas}) async {
     try {
-      var respones = await DioProvider.post(endpoint: Endpoint.updateprofile, data: {
+      var respones =
+          await DioProvider.post(endpoint: Endpoint.updateprofile, data: {
         "name": prmas.name,
         "address": prmas.address,
         "phone": prmas.phone,
+      }, header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${SharedPrefere.getData(
+          SharedPrefere.token,
+        )}',
+      });
+
+      if (respones.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } on Exception catch (e) {
+      return false;
+    }
+  }
+
+  static Future<bool?> updatePassword(
+      {required UpdatePasswordprmas prmas}) async {
+    try {
+      var respones =
+          await DioProvider.post(endpoint: Endpoint.updatepassword, data: {
+        'current_password': prmas.currentpassword,
+        'new_password': prmas.newpassword,
+        'new_password_confirmation': prmas.newpasswordconfirmation
       }, header: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

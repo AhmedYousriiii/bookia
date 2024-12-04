@@ -3,7 +3,7 @@ import 'package:boookia/core/function/navigator_app.dart';
 import 'package:boookia/core/function/text_style_app.dart';
 import 'package:boookia/core/utils/color_app.dart';
 import 'package:boookia/features/auth/presentation/page/create_new_pass.dart';
-import 'package:boookia/features/auth/data/model/request/request..dart';
+
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_event.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_state.dart';
@@ -25,6 +25,7 @@ class OtpScreen extends StatefulWidget {
 var formkey = GlobalKey<FormState>();
 
 class _OtpScreenState extends State<OtpScreen> {
+  String? enteredCode;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +37,7 @@ class _OtpScreenState extends State<OtpScreen> {
             if (state is CodepasswordSuccessState) {
               pushReplacement(context, CreateNewPassword());
             } else if (state is AuthErrorState) {
-              showMessageDialog(context, state.meassage);
+              showMessageDialog(context, state.meassage, DialogType.error);
             }
           },
           builder: (context, state) {
@@ -62,7 +63,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     Center(
                       child: Pinput(
-                        length: 4,
+                        length: 6,
                         defaultPinTheme: PinTheme(
                           width: 70,
                           height: 60,
@@ -81,6 +82,10 @@ class _OtpScreenState extends State<OtpScreen> {
                           if (value!.isEmpty) {
                             return "code is required";
                           }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          enteredCode = value;
                         },
                       ),
                     ),
@@ -93,13 +98,25 @@ class _OtpScreenState extends State<OtpScreen> {
                             text: "Verify",
                             onpress: () {
                               if (formkey.currentState!.validate()) {
-                                context.read<AuthBloc>().add(
-                                      CodeForgetPaawordEvent(
-                                        UserModel(),
-                                      ),
-                                    );
+                                // تحويل النص إلى عدد صحيح والتحقق من عدم وجود قيمة null
+                                final code = int.tryParse(enteredCode ?? '');
+                                if (code != null) {
+                                  context.read<AuthBloc>().add(
+                                        CodeForgetPaawordEvent(
+                                          code: code, // تمرير الكود المحول
+                                        ),
+                                      );
+                                } else {
+                                  // عرض رسالة خطأ إذا كان الكود المدخل غير صالح
+                                  showMessageDialog(
+                                    context,
+                                    "Invalid code. Please enter a valid 4-digit code.",
+                                    DialogType.error,
+                                  );
+                                }
                               }
-                            }),
+                            },
+                          ),
                     SizedBox(
                       height: 290,
                     ),
@@ -114,9 +131,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            // pushto(context, LoginScreen());
-                          },
+                          onTap: () {},
                           child: Text(
                             "Resend",
                             style: getprimarytext(fontsize: 15),

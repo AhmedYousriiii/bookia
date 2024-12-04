@@ -73,7 +73,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       children: [
                         Text(
                           "Total:",
-                          style: get15text(color: ColorApp.darkgraycolor, fontsize: 20, fontweight: FontWeight.bold),
+                          style: get15text(
+                              color: ColorApp.darkgraycolor,
+                              fontsize: 20,
+                              fontweight: FontWeight.bold),
                         ),
                         Spacer(),
                         Text(
@@ -109,7 +112,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.only(right: 15, left: 15, top: 20, bottom: 10),
+            padding:
+                const EdgeInsets.only(right: 15, left: 15, top: 20, bottom: 10),
             child: Form(
               key: formkey,
               child: Column(
@@ -193,7 +197,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     enableSearch: true,
                     hintText: "shoose governorate",
                     expandedInsets: EdgeInsets.all(0),
-                    menuStyle: MenuStyle(backgroundColor: WidgetStatePropertyAll(ColorApp.secondarycolor)),
+                    menuStyle: MenuStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(ColorApp.secondarycolor)),
                     inputDecorationTheme: InputDecorationTheme(
                       fillColor: Color(0xffE8ECF4).withOpacity(.4),
                       filled: true,
@@ -203,7 +209,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     },
                     dropdownMenuEntries: governdata.map(
                       (e) {
-                        return DropdownMenuEntry(value: e["id"], label: e["governorate_name_en"]);
+                        return DropdownMenuEntry(
+                            value: e["id"], label: e["governorate_name_en"]);
                       },
                     ).toList(),
                   ),

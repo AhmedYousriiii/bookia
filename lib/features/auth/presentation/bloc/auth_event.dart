@@ -1,6 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:boookia/features/auth/data/model/request/newpasswordprams.dart';
 import 'package:boookia/features/auth/data/model/request/request..dart';
-import 'package:boookia/features/cart/data/model/request/place_order_prams.dart';
 
 class AuthEvent {}
 
@@ -20,7 +20,13 @@ class ForgetPaawordEvent extends AuthEvent {
 }
 
 class CodeForgetPaawordEvent extends AuthEvent {
-  final UserModel prams;
+  final int code;
 
-  CodeForgetPaawordEvent(this.prams);
+  CodeForgetPaawordEvent({required this.code});
+}
+
+class CreateNewPaawordEvent extends AuthEvent {
+  final Newpasswordprams prams;
+
+  CreateNewPaawordEvent({required this.prams});
 }

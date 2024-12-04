@@ -12,6 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginEvent>(login);
     on<ForgetPaawordEvent>(forgetpasswoed);
     on<CodeForgetPaawordEvent>(Codeforgetpassword);
+    on<CreateNewPaawordEvent>(createNewPassword);
   }
 
   Future<void> register(RegisterEvent event, Emitter<AuthState> emit) async {
@@ -24,14 +25,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(RegisterSuccessState());
             // log("_________________________________Ahmed____________");
           } else {
-            emit(AuthErrorState(
-                meassage: 'Unexpected Error occur, please tryy again'));
+            emit(AuthErrorState(meassage: 'Unexpected Error occur, please tryy again'));
           }
         },
       );
     } on Exception {
-      emit(
-          AuthErrorState(meassage: 'Unexpected Error occur, please try again'));
+      emit(AuthErrorState(meassage: 'Unexpected Error occur, please try again'));
     }
   }
 
@@ -45,19 +44,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(LoginSuccessState());
             // log("_________________________________Ahmed____________");
           } else {
-            emit(AuthErrorState(
-                meassage: 'Unexpected Error occur, please tryy again'));
+            emit(AuthErrorState(meassage: 'Unexpected Error occur, please tryy again'));
           }
         },
       );
     } on Exception {
-      emit(
-          AuthErrorState(meassage: 'Unexpected Error occur, please try again'));
+      emit(AuthErrorState(meassage: 'Unexpected Error occur, please try again'));
     }
   }
 
-  Future<void> forgetpasswoed(
-      ForgetPaawordEvent event, Emitter<AuthState> emit) async {
+  Future<void> forgetpasswoed(ForgetPaawordEvent event, Emitter<AuthState> emit) async {
     emit(ForgetPaawordloadingState());
     try {
       await AuthRepo.forgetpassword(event.prams).then(
@@ -65,8 +61,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           if (value != null) {
             emit(ForgetPaawordSuccessState());
           } else {
-            emit(AuthErrorState(
-                meassage: 'Unexpected Error occur, please tryy again'));
+            emit(AuthErrorState(meassage: 'Unexpected Error occur, please tryy again'));
           }
         },
       );
@@ -75,17 +70,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> Codeforgetpassword(
-      CodeForgetPaawordEvent event, Emitter<AuthState> emit) async {
+  Future<void> Codeforgetpassword(CodeForgetPaawordEvent event, Emitter<AuthState> emit) async {
     emit(CodepasswordloadingState());
     try {
-      await AuthRepo.Codeforgetpass(event.prams).then(
+      await AuthRepo.Codeforgetpass(code: event.code).then(
         (value) {
-          if (value != null) {
+          if (value == true) {
             emit(CodepasswordSuccessState());
           } else {
-            emit(AuthErrorState(
-                meassage: 'Unexpected Error occur, please tryy again'));
+            emit(AuthErrorState(meassage: 'Unexpected Error occur, please tryy again'));
+          }
+        },
+      );
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> createNewPassword(CreateNewPaawordEvent event, Emitter<AuthState> emit) async {
+    emit(CreatepasswordloadingState());
+    try {
+      await AuthRepo.createNewPaaword(prams: event.prams).then(
+        (value) {
+          if (value == true) {
+            emit(CreatepasswordSuccessState());
+          } else {
+            emit(AuthErrorState(meassage: 'Unexpected Error occur, please tryy again'));
           }
         },
       );

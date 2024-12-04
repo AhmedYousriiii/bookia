@@ -18,6 +18,10 @@ class CodepasswordloadingState extends AuthState {}
 
 class CodepasswordSuccessState extends AuthState {}
 
+class CreatepasswordloadingState extends AuthState {}
+
+class CreatepasswordSuccessState extends AuthState {}
+
 class AuthErrorState extends AuthState {
   String meassage;
   AuthErrorState({required this.meassage});

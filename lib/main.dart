@@ -2,8 +2,11 @@ import 'package:boookia/core/function/textfrom_them.dart';
 import 'package:boookia/core/services/dio_provider.dart';
 import 'package:boookia/core/services/shared_preferences.dart';
 import 'package:boookia/features/auth/presentation/bloc/auth_bloc.dart';
+
+import 'package:boookia/features/auth/presentation/page/login.dart';
+
 import 'package:boookia/features/home/presentation/bloc/home_bloc.dart';
-import 'package:boookia/features/intro/splash/splash.dart';
+
 import 'package:boookia/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: TextfromThem.themeData,
-        home: SplashScreen(),
+        home: LoginScreen(),
       ),
     );
   }

@@ -198,7 +198,8 @@ class _LoginScreenState extends State<RegisterScreen> {
                                           email: emailcontro.text,
                                           name: namecontro.text,
                                           password: passwordcontroller.text,
-                                          passwordConfirmation: confirmpasswordcontroller.text,
+                                          passwordConfirmation:
+                                              confirmpasswordcontroller.text,
                                         ),
                                       ),
                                     );
@@ -244,7 +245,7 @@ class _LoginScreenState extends State<RegisterScreen> {
           if (state is RegisterSuccessState) {
             pushAndRemoveUntil(context, NavBarScreen());
           } else if (state is AuthErrorState) {
-            showMessageDialog(context, state.meassage,DialogType.error);
+            showMessageDialog(context, state.meassage, DialogType.error);
           }
         },
       ),

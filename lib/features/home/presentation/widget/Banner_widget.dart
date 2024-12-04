@@ -57,7 +57,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                     initialPage: 0,
                     enableInfiniteScroll: true,
                     reverse: false,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlayInterval: const Duration(seconds: 3),
                     autoPlayAnimationDuration:
                         const Duration(milliseconds: 800),

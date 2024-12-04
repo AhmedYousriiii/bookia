@@ -19,4 +19,6 @@ class Endpoint {
   static const String profile = "/profile";
   static const String logout = "/logout";
   static const String updateprofile = "/update-profile";
+  static const String updatepassword = "/update-password";
+  static const String resetpassword = "/reset-password";
 }

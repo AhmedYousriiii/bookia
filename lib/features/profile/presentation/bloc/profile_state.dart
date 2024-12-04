@@ -15,6 +15,10 @@ class logoutLoadedState extends ProfileState {}
 
 class UpdateProfileLoadingState extends ProfileState {}
 
+class updatePasswordLoadedState extends ProfileState {}
+
+class updatePasswordLoadingState extends ProfileState {}
+
 class UpdateProfileLoadedState extends ProfileState {}
 
 class ProfileErrorState extends ProfileState {

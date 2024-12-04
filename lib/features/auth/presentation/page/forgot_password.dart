@@ -39,7 +39,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               if (state is ForgetPaawordSuccessState) {
                 pushReplacement(context, OtpScreen());
               } else if (state is AuthErrorState) {
-                showMessageDialog(context, state.meassage);
+                showMessageDialog(context, state.meassage, DialogType.error);
               }
             },
             builder: (context, state) {

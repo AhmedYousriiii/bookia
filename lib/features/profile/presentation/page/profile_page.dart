@@ -61,7 +61,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
         body: BlocBuilder<ProfileBloc, ProfileState>(
-          buildWhen: (previous, current) => current is GetProfileLoadingState || current is GetProfileLoadedState,
+          buildWhen: (previous, current) =>
+              current is GetProfileLoadingState ||
+              current is GetProfileLoadedState,
           builder: (context, state) {
             var profile = context.read<ProfileBloc>().profileResponse?.data;
             return Padding(

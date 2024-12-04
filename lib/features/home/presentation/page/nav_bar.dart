@@ -48,7 +48,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
                 "assets/icons/Home.svg",
-                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+                colorFilter:
+                    ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
               ),
               backgroundColor: ColorApp.backgroundcolor,
               icon: SvgPicture.asset("assets/icons/Home.svg"),
@@ -57,7 +58,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
                 "assets/icons/Bookmark.svg",
-                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+                colorFilter:
+                    ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
               ),
               icon: SvgPicture.asset("assets/icons/Bookmark.svg"),
               label: "Bookmark",
@@ -65,7 +67,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
                 "assets/icons/Category.svg",
-                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+                colorFilter:
+                    ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
               ),
               icon: SvgPicture.asset("assets/icons/Category.svg"),
               label: "Category",
@@ -73,7 +76,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
                 "assets/icons/Profile.svg",
-                colorFilter: ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
+                colorFilter:
+                    ColorFilter.mode(ColorApp.primarycolor, BlendMode.srcIn),
               ),
               icon: SvgPicture.asset("assets/icons/Profile.svg"),
               label: "Profile",
